@@ -1,3 +1,6 @@
+<img src="https://img.shields.io/badge/linux-wsl2-yellow?logo=linux"></img>
+<img src="https://img.shields.io/badge/zsh-5.x-brightgreen?logo=gnubash"></img>
+<img src="https://img.shields.io/badge/windows-10%2F11-informational?logo=windows11"></img>
 # Auto dark mode for wsl apps
 
 Change wsl2 app themes based on Windows theme switch
