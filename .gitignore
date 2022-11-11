@@ -1,3 +1,7 @@
+# Ignore all files
 *
+
+# Except the following
 !.gitignore
 !adm.sh
+!README.md
