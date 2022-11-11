@@ -23,6 +23,7 @@ else
     source $(dirname "$0")/functions.sh
 fi
 
+# CONFIG Section
 # Set program connfig paths
 LAZYGIT=(~/.config/lazygit/{config.yml,light.yml,dark.yml})
 NVIM=(~/.config/nvim/lua/user/{colorscheme.lua,tokyonight.light.lua,tokyonight.dark.lua})
@@ -30,7 +31,9 @@ BAT=(~/.config/bat/{bat.conf,light.conf,dark.conf})
 TMUX=(~/.config/tmux/{tokyonight.tmux,tokyonight_day.tmux,tokyonight_night.tmux})
 GLOW=(~/.config/glow/{glow.yml,light.yml,dark.yml})
 GTKTHEME=Adwaita
+IPYTHON=(~/.ipython/profile_default/{ipython_config.py,light.py,dark.py})
 
+# FUNCTION Section
 # Corresponding functions are defined in ./functions.sh
 softlink "${LAZYGIT[@]}"
 softlink "${BAT[@]}"
@@ -40,5 +43,6 @@ softlink "${GLOW[@]}"
 
 hardlink "${NVIM[@]}"
 set_open_nvim_theme
+hardlink "${IPYTHON[@]}"
 
 gtktheme "${GTKTHEME}"
