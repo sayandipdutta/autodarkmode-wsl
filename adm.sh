@@ -16,7 +16,12 @@
 #       $ source adm.sh 1
 #         Valid arguments are 0 (Dark) or 1 (Light).
 
-source $(dirnmae "$0")/functions.sh
+# pass command line argument to functions.sh
+if [ $# -ne 0 ] && { [ "$1" -eq 0 ] || [ "$1" -eq 1 ]; }; then
+    source $(dirname "$0")/functions.sh "$1"
+else
+    source $(dirname "$0")/functions.sh
+fi
 
 # Set program connfig paths
 LAZYGIT=(~/.config/lazygit/{config.yml,light.yml,dark.yml})
