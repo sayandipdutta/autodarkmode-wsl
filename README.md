@@ -48,7 +48,7 @@ Currently the script is configured for:
 Assuming you have `pygments` installed, 
 - Copy your `ipython` profile default theme (typically found in `~/.ipython/profile_default/`
  or `~/.ipython/profile_$USER/` directory) to a new file called `light.py` in the same directory.
-- Change the following line to your preferred light theme (e.g. 'gruvbox-light')
+- Change the following line to your preferred light theme (e.g. `'gruvbox-light'`)
 ```python
 c.TerminalInteractiveShell.highlighting_style = 'gruvbox-light'
 ```
@@ -57,8 +57,66 @@ c.TerminalInteractiveShell.highlighting_style = 'gruvbox-light'
 ```shell
 IPYTHON=(~/.ipython/profile_default/{ipython_config.py,light.py,dark.py})
 ```
-- Now based on system theme, light.py or dark.py can be linked to config.py. A symlink can be created using `softlink` function from `functions.sh`. Add the following line to the end of `adm.sh`:
+- Now based on system theme, light.py or dark.py can be linked to `config.py`.
+A symlink can be created using `softlink` function from `functions.sh`.
+Add the following line to the end of `adm.sh`:
 ```shell
 softlink "${IPYTHON[@]}"
 ```
 
+## Available functions and variables
+### Functions
+#### softlink
+    Creates symbolic link
+    This function takes three arguments,
+    argument 1
+        is the path of the symbolic link. 
+    argument 2
+        path of the light themed configuration to link to.
+    argument 3
+        path of the dark themed configuration to link to.
+    Based on `WINTHEME`, links to dark or light file.
+
+#### hardlink
+    Creates hard link
+    This function takes three arguments,
+    argument 1
+        is the path of the symbolic link. 
+    argument 2
+        path of the light themed configuration to link to.
+    argument 3
+        path of the dark themed configuration to link to.
+    Based on `WINTHEME`, links to dark or light file.
+
+#### set_open_nvim_theme
+    Attempts to change the background of theme in running nvim insances
+    Checks if nvim is listening to `/tmp/nvim_*.sock`. In order for this to work, the following alias must be set
+    in zsh:
+    ```shell
+    alias nvim=nvim --listen /tmp/nvim_*.sock
+    ```
+    If socket files with matching pattern exist, sends remote commands to instance.
+
+#### gtktheme
+    Changes wslg theme based on `WINTHEME`
+    Takes 1 argument:
+    argument 1:
+        Name of the theme (e.g. `Adwaita`)
+
+### Variables
+#### WINTHEME
+*Possible values **0** or **1**.*
+    0 - Dark
+    1 - Light
+
+
+When called without arguments, `WINTHEME` is set by checking windows registry value 
+of `AppsUseLightTheme`. *NOTE: Querying the registry takes ~2 seconds.* When called
+with argument, `WINTHEME` is the value of the first argument. If provided argument
+is not *0* or *1*, query windows registry to set `WINTHEME`.
+
+#### MODE
+Possible values **"light"** or **"dark"**.
+
+
+`MODE` can be used in cases where *light* or *dark* must be provided to change theme.

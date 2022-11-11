@@ -76,7 +76,7 @@ set_open_nvim_theme() {
 }
 
 # Takes one argument, i.e the name of the theme, e.g. `Adwaita`
-# Switches flavour to light or dark
+# Switches wslg flavour to light or dark
 gtktheme () {
     export GTK_THEME="${1}:${MODE}"
     echo "Switched GTK_THEME to ${MODE}" >>$LOGPATH
