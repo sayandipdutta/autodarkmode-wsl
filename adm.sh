@@ -95,5 +95,5 @@ hardlink "${NVIM[@]}"
 set_open_nvim_theme
 
 # change wslg theme
-GTK_THEME=[ "$WINTHEME" -eq 0 ] && echo "Adwaita:dark" || echo "Adwaita:light"
+GTK_THEME=$([ "$WINTHEME" -eq 0 ] && echo "Adwaita:dark" || echo "Adwaita:light")
 export GTK_THEME
