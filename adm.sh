@@ -29,8 +29,9 @@ NVIM=(~/.config/nvim/lua/user/{colorscheme.lua,tokyonight.light.lua,tokyonight.d
 BAT=(~/.config/bat/{bat.conf,light.conf,dark.conf})
 TMUX=(~/.config/tmux/{tokyonight.tmux,tokyonight_day.tmux,tokyonight_night.tmux})
 GLOW=(~/.config/glow/{glow.yml,light.yml,dark.yml})
+GTKTHEME=Adwaita
 
-# call the functions
+# Corresponding functions are defined in ./functions.sh
 softlink "${LAZYGIT[@]}"
 softlink "${BAT[@]}"
 softlink "${TMUX[@]}"
@@ -40,4 +41,4 @@ softlink "${GLOW[@]}"
 hardlink "${NVIM[@]}"
 set_open_nvim_theme
 
-# change wslg theme
+gtktheme "${GTKTHEME}"

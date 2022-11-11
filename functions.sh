@@ -40,6 +40,7 @@ MODE=$([ "$WINTHEME" -eq 0 ] && echo "dark" || echo "light")
 #   $2 -> corresponding light theme file
 #   $3 -> corresponding dark theme file
 softlink() {
+
 	# if symlink of first arg exist, unlink
 	test -L "$1" && unlink "$1"
 	target=$([ "$WINTHEME" -eq 0 ] && echo "$3" || echo "$2")
@@ -74,7 +75,9 @@ set_open_nvim_theme() {
     [ "$match" -eq 0 ] && echo "WARNING: Neovim not running" >>$LOGPATH
 }
 
-export GTK_THEME="Adwaita:${MODE}"
-echo "Switched GTK_THEME to ${MODE}"
 # Takes one argument, i.e the name of the theme, e.g. `Adwaita`
 # Switches flavour to light or dark
+gtktheme () {
+    export GTK_THEME="${1}:${MODE}"
+    echo "Switched GTK_THEME to ${MODE}" >>$LOGPATH
+}
