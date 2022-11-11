@@ -35,6 +35,10 @@ MODE=$([ "$WINTHEME" -eq 0 ] && echo "dark" || echo "light")
 
 # If a regular (i.e. non symlink) config file does not exist
 # set theme by linking with appropriate theme file based on $WINTHEME
+# takes a three arguments:
+#   $1 -> config path of a program
+#   $2 -> corresponding light theme file
+#   $3 -> corresponding dark theme file
 softlink() {
 	# if symlink of first arg exist, unlink
 	test -L "$1" && unlink "$1"
@@ -43,6 +47,10 @@ softlink() {
 	echo "INFO: Switched ${1} theme to ${target}" >>$LOGPATH
 }
 
+# takes a three arguments:
+#   $1 -> config path of a program
+#   $2 -> corresponding light theme file
+#   $3 -> corresponding dark theme file
 hardlink() {
 	# if file exists, delete
 	test -f "$1" && rm "$1"
@@ -68,3 +76,5 @@ set_open_nvim_theme() {
 
 export GTK_THEME="Adwaita:${MODE}"
 echo "Switched GTK_THEME to ${MODE}"
+# Takes one argument, i.e the name of the theme, e.g. `Adwaita`
+# Switches flavour to light or dark
