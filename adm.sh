@@ -33,6 +33,7 @@ LAZYGIT=(~/.config/lazygit/{config.yml,light.yml,dark.yml})
 NVIM=(~/.config/nvim/lua/user/{colorscheme.lua,tokyonight.light.lua,tokyonight.dark.lua})
 BAT=(~/.config/bat/{bat.conf,light.conf,dark.conf})
 TMUX=(~/.config/tmux/{tokyonight.tmux,tokyonight_day.tmux,tokyonight_night.tmux})
+GLOW=(~/.config/glow/{glow.yml,light.yml,dark.yml})
 
 # Get current windows theme
 # If theme==dark, $WINTHEME == 0, else 1
@@ -90,6 +91,7 @@ softlink "${LAZYGIT[@]}"
 softlink "${BAT[@]}"
 softlink "${TMUX[@]}"
 tmux source-file "${TMUX[1]}"
+softlink "${GLOW[@]}"
 
 hardlink "${NVIM[@]}"
 set_open_nvim_theme
