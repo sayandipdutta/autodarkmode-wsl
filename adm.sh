@@ -15,7 +15,7 @@
 #         Valid arguments are 0 (Dark) or 1 (Light).
 
 # log path
-LOGPATH=~/github/pylang/autodarkmode-nvim/admlog.log
+LOGPATH=~/github/shell/log/admlog.log
 # restrict log file to last 1000 lines
 # HACK: echo $(cmd) instead of cmd, because we are trying to modify the file inplace
 # Thus the output of tail command needs to be loaded in memory
