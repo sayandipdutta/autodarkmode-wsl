@@ -30,7 +30,7 @@ BAT_CONFIG=(~/.config/bat/{bat.conf,light.conf,dark.conf})
 TMUX_CONFIG=(~/.config/tmux/{tokyonight.tmux,tokyonight_day.tmux,tokyonight_night.tmux})
 GLOW_CONFIG=(~/.config/glow/{glow.yml,light.yml,dark.yml})
 IPYTHON_CONFIG=(~/.ipython/profile_default/{ipython_config.py,light.py,dark.py})
-GTKTHEME=Adwaita
+GTKTHEME_CONFIG=Adwaita
 
 # Corresponding functions are defined in ./functions.sh
 linkconfig "${LAZYGIT_CONFIG[@]}" soft
@@ -44,4 +44,7 @@ tmux source-file "${TMUX_CONFIG[1]}"
 linkconfig "${NVIM_CONFIG[@]}" hard
 set_open_nvim_theme
 
-gtktheme "${GTKTHEME}"
+gtktheme "${GTKTHEME_CONFIG}"
+
+unset -m "*_CONFIG"
+unset LOGPATH
