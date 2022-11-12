@@ -93,8 +93,9 @@ softlink "${IPYTHON[@]}"
 
 #### set_open_nvim_theme
     Attempts to change the background of theme in running nvim insances
-    Checks if nvim is listening to `/tmp/nvim_*.sock`. In order for this to work, the following alias must be set
-    in zsh:
+    In order for this to work, `nvim` must be started with a listen address.
+    e.g. `nvim --listen /tmp/nvim_1234.sock`, for a stable solution an alias
+    could be added in `.zshrc`:
     ```shell
     alias nvim=nvim --listen /tmp/nvim_*.sock
     ```
