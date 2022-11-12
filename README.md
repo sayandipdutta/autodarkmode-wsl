@@ -58,7 +58,7 @@ c.TerminalInteractiveShell.highlighting_style = 'gruvbox-light'
 - Do the same process for dark, i.e. create dark.py and change `highlighting_style` to a dark theme.
 - In `adm.sh`, add the following at the end of config section:
 ```shell
-IPYTHON=(~/.ipython/profile_default/{ipython_config.py,light.py,dark.py})
+IPYTHON_CONFIG=(~/.ipython/profile_default/{ipython_config.py,light.py,dark.py})
 ```
 - Now based on system theme, light.py or dark.py can be linked to `config.py`.
 A symlink can be created using `softlink` function from `functions.sh`.
