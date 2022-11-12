@@ -23,26 +23,23 @@ else
     source $(dirname "$0")/functions.sh
 fi
 
-# CONFIG Section
 # Set program connfig paths
-LAZYGIT=(~/.config/lazygit/{config.yml,light.yml,dark.yml})
-NVIM=(~/.config/nvim/lua/user/{colorscheme.lua,tokyonight.light.lua,tokyonight.dark.lua})
-BAT=(~/.config/bat/{bat.conf,light.conf,dark.conf})
-TMUX=(~/.config/tmux/{tokyonight.tmux,tokyonight_day.tmux,tokyonight_night.tmux})
-GLOW=(~/.config/glow/{glow.yml,light.yml,dark.yml})
+LAZYGIT_CONFIG=(~/.config/lazygit/{config.yml,light.yml,dark.yml})
+NVIM_CONFIG=(~/.config/nvim/lua/user/{colorscheme.lua,tokyonight.light.lua,tokyonight.dark.lua})
+BAT_CONFIG=(~/.config/bat/{bat.conf,light.conf,dark.conf})
+TMUX_CONFIG=(~/.config/tmux/{tokyonight.tmux,tokyonight_day.tmux,tokyonight_night.tmux})
+GLOW_CONFIG=(~/.config/glow/{glow.yml,light.yml,dark.yml})
 GTKTHEME=Adwaita
-IPYTHON=(~/.ipython/profile_default/{ipython_config.py,light.py,dark.py})
 
-# FUNCTION Section
 # Corresponding functions are defined in ./functions.sh
-softlink "${LAZYGIT[@]}"
-softlink "${BAT[@]}"
-softlink "${TMUX[@]}"
-tmux source-file "${TMUX[1]}"
-softlink "${GLOW[@]}"
+softlink "${LAZYGIT_CONFIG[@]}"
+softlink "${BAT_CONFIG[@]}"
+softlink "${TMUX_CONFIG[@]}"
+tmux source-file "${TMUX_CONFIG[1]}"
+softlink "${GLOW_CONFIG[@]}"
 
-hardlink "${NVIM[@]}"
+hardlink "${NVIM_CONFIG[@]}"
 set_open_nvim_theme
-hardlink "${IPYTHON[@]}"
 
 gtktheme "${GTKTHEME}"
+
