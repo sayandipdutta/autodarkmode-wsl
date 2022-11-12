@@ -70,46 +70,41 @@ softlink "${IPYTHON[@]}"
 ## Available functions and variables
 ### Functions
 #### softlink
-    Creates symbolic link
-    This function takes three arguments,
-    argument 1
-        is the path of the symbolic link. 
-    argument 2
-        path of the light themed configuration to link to.
-    argument 3
-        path of the dark themed configuration to link to.
-    Based on `WINTHEME`, links to dark or light file.
+Creates symbolic link
+Based on `WINTHEME`, links to dark or light file.
+This function takes three arguments,
+- **argument 1** is the path where the config file (symbolic link) needs to be created.
+- **argument 2** path of the light themed configuration to link to.
+- **argument 3** path of the dark themed configuration to link to.
 
 #### hardlink
-    Creates hard link
-    This function takes three arguments,
-    argument 1
-        is the path of the symbolic link. 
-    argument 2
-        path of the light themed configuration to link to.
-    argument 3
-        path of the dark themed configuration to link to.
-    Based on `WINTHEME`, links to dark or light file.
+Creates hard link
+Based on `WINTHEME`, links to dark or light file.
+This function takes three arguments,
+- **argument 1** is the path where the config file (hard link) needs to be created.
+- **argument 2** path of the light themed configuration to link to.
+- **argument 3** path of the dark themed configuration to link to.
 
 #### set_open_nvim_theme
-    Attempts to change the background of theme in running nvim insances
-    In order for this to work, `nvim` must be started with a listen address.
-    e.g. `nvim --listen /tmp/nvim_1234.sock`, for a stable solution an alias
-    could be added in `.zshrc`:
-    ```shell
-    alias nvim=nvim --listen /tmp/nvim_*.sock
-    ```
-    If socket files with matching pattern exist, sends remote commands to instance.
+Attempts to change the background of theme in running nvim instances.
+If socket files with matching pattern exist, sends remote commands to instance.
+In order for this to work, `nvim` must be started with a listen address.
+e.g. `nvim --listen /tmp/nvim_1234.sock`, for a stable solution an alias
+could be added in `.zshrc`:
+```shell
+alias nvim=nvim --listen /tmp/nvim_*.sock
+```
 
 #### gtktheme
-    Changes wslg theme based on `WINTHEME`
-    Takes 1 argument:
-    argument 1:
-        Name of the theme (e.g. `Adwaita`)
+Changes wslg theme based on `WINTHEME`
+Takes 1 argument:
+- **argument 1:** Name of the theme (e.g. `Adwaita`)
 
 ### Variables
 #### WINTHEME
 *Possible values **0** or **1**.*
+
+
     0 - Dark
     1 - Light
 
