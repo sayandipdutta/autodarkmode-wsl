@@ -19,7 +19,7 @@ echo "$(tail -n 1000 $LOGPATH)" >$LOGPATH
 
 # if arg is 0 or 1 set it as WINTHEME
 # Otherwise, find out wintheme value from windows registry
-if [ $# -ne 0 ] && { [ "$1" -eq 0 ] || [ "$1" -eq 1 ]; }; then
+if [ $# -ne 0 ] && [ "$1" -eq 0 -o "$1" -eq 1 ]; then
 	# convert command line arg to int
 	WINTHEME=$(($1 + 0))
 	echo "INFO: Called from AutoDarkMode with arg ${WINTHEME}" >>$LOGPATH
@@ -35,29 +35,24 @@ MODE=$([ "$WINTHEME" -eq 0 ] && echo "dark" || echo "light")
 
 # If a regular (i.e. non symlink) config file does not exist
 # set theme by linking with appropriate theme file based on $WINTHEME
-# takes a three arguments:
+# takes four arguments:
 #   $1 -> config path of a program
 #   $2 -> corresponding light theme file
 #   $3 -> corresponding dark theme file
-softlink() {
-
-	# if symlink of first arg exist, unlink
-	test -L "$1" && unlink "$1"
+#   $4 -> hard | soft | copy
+#                    If hard is supplied as 4th arg, creates hard link
+#                    If soft is supplied as 4th arg, creates hard link
+#                    If copy is supplied as 4th arg, copies the file
+linkconfig() {
+	# if first arg exists, unlink
+	[ -e "$1" ] && rm "$1"
 	target=$([ "$WINTHEME" -eq 0 ] && echo "$3" || echo "$2")
-	ln -s "$target" "$1"
-	echo "INFO: Switched ${1} theme to ${target}" >>$LOGPATH
-}
-
-# takes a three arguments:
-#   $1 -> config path of a program
-#   $2 -> corresponding light theme file
-#   $3 -> corresponding dark theme file
-hardlink() {
-	# if file exists, delete
-	test -f "$1" && rm "$1"
-	target=$([ "$WINTHEME" -eq 0 ] && echo "$3" || echo "$2")
-	# create hard link, as lua cannot load symlink as module
-	ln "$target" "$1"
+    case $4 in
+        hard) ln "${target}" "$1";;
+        soft) ln -s "${target}" "$1";;
+        copy) cp "${target}" "$1";;
+        *) return;;
+    esac
 	echo "INFO: Switched ${1} theme to ${target}" >>$LOGPATH
 }
 

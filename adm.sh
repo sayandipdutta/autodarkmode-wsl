@@ -18,9 +18,9 @@
 
 # pass command line argument to functions.sh
 if [ $# -ne 0 ] && { [ "$1" -eq 0 ] || [ "$1" -eq 1 ]; }; then
-    source $(dirname "$0")/functions.sh "$1"
+	source $(dirname "$0")/functions.sh "$1"
 else
-    source $(dirname "$0")/functions.sh
+	source $(dirname "$0")/functions.sh
 fi
 
 # Set program connfig paths
@@ -29,17 +29,19 @@ NVIM_CONFIG=(~/.config/nvim/lua/user/{colorscheme.lua,tokyonight.light.lua,tokyo
 BAT_CONFIG=(~/.config/bat/{bat.conf,light.conf,dark.conf})
 TMUX_CONFIG=(~/.config/tmux/{tokyonight.tmux,tokyonight_day.tmux,tokyonight_night.tmux})
 GLOW_CONFIG=(~/.config/glow/{glow.yml,light.yml,dark.yml})
+IPYTHON_CONFIG=(~/.ipython/profile_default/{ipython_config.py,light.py,dark.py})
 GTKTHEME=Adwaita
 
 # Corresponding functions are defined in ./functions.sh
-softlink "${LAZYGIT_CONFIG[@]}"
-softlink "${BAT_CONFIG[@]}"
-softlink "${TMUX_CONFIG[@]}"
+linkconfig "${LAZYGIT_CONFIG[@]}" soft
+linkconfig "${BAT_CONFIG[@]}" soft
+linkconfig "${GLOW_CONFIG[@]}" soft
+linkconfig "${IPYTHON_CONFIG[@]}" soft
+linkconfig "${TMUX_CONFIG[@]}" soft
 tmux source-file "${TMUX_CONFIG[1]}"
-softlink "${GLOW_CONFIG[@]}"
 
-hardlink "${NVIM_CONFIG[@]}"
+
+linkconfig "${NVIM_CONFIG[@]}" hard
 set_open_nvim_theme
 
 gtktheme "${GTKTHEME}"
-
