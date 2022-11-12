@@ -39,29 +39,20 @@ MODE=$([ "$WINTHEME" -eq 0 ] && echo "dark" || echo "light")
 #   $1 -> config path of a program
 #   $2 -> corresponding light theme file
 #   $3 -> corresponding dark theme file
-softlink() {
-
-	# if symlink of first arg exist, unlink
-	test -L "$1" && unlink "$1"
-	target=$([ "$WINTHEME" -eq 0 ] && echo "$3" || echo "$2")
-	ln -s "$target" "$1"
-	echo "INFO: Switched ${1} theme to ${target}" >>$LOGPATH
-}
-
-# takes a three arguments:
-#   $1 -> config path of a program
-#   $2 -> corresponding light theme file
-#   $3 -> corresponding dark theme file
-hardlink() {
-	# if file exists, delete
-	test -f "$1" && rm "$1"
 #   $4 -> hard | soft | copy
 #                    If hard is supplied as 4th arg, creates hard link
 #                    If soft is supplied as 4th arg, creates hard link
 #                    If copy is supplied as 4th arg, copies the file
+linkconfig() {
+	# if first arg exists, unlink
+	[ -e "$1" ] && rm "$1"
 	target=$([ "$WINTHEME" -eq 0 ] && echo "$3" || echo "$2")
-	# create hard link, as lua cannot load symlink as module
-	ln "$target" "$1"
+    case $4 in
+        hard) ln "${target}" "$1";;
+        soft) ln -s "${target}" "$1";;
+        copy) cp "${target}" "$1";;
+        *) return;;
+    esac
 	echo "INFO: Switched ${1} theme to ${target}" >>$LOGPATH
 }
 
