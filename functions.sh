@@ -20,6 +20,7 @@ echo "$(tail -n 1000 $LOGPATH)" >$LOGPATH
 # if arg is 0 or 1 set it as WINTHEME
 # Otherwise, find out wintheme value from windows registry
 if [ $# -ne 0 ] && { [ "$1" -eq 0 ] || [ "$1" -eq 1 ]; }; then
+if [ $# -ne 0 ] && [ "$1" -eq 0 -o "$1" -eq 1 ]; then
 	# convert command line arg to int
 	WINTHEME=$(($1 + 0))
 	echo "INFO: Called from AutoDarkMode with arg ${WINTHEME}" >>$LOGPATH
