@@ -19,7 +19,6 @@ echo "$(tail -n 1000 $LOGPATH)" >$LOGPATH
 
 # if arg is 0 or 1 set it as WINTHEME
 # Otherwise, find out wintheme value from windows registry
-if [ $# -ne 0 ] && { [ "$1" -eq 0 ] || [ "$1" -eq 1 ]; }; then
 if [ $# -ne 0 ] && [ "$1" -eq 0 -o "$1" -eq 1 ]; then
 	# convert command line arg to int
 	WINTHEME=$(($1 + 0))
@@ -36,7 +35,7 @@ MODE=$([ "$WINTHEME" -eq 0 ] && echo "dark" || echo "light")
 
 # If a regular (i.e. non symlink) config file does not exist
 # set theme by linking with appropriate theme file based on $WINTHEME
-# takes a three arguments:
+# takes a three or four arguments:
 #   $1 -> config path of a program
 #   $2 -> corresponding light theme file
 #   $3 -> corresponding dark theme file
