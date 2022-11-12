@@ -33,14 +33,15 @@ IPYTHON_CONFIG=(~/.ipython/profile_default/{ipython_config.py,light.py,dark.py})
 GTKTHEME=Adwaita
 
 # Corresponding functions are defined in ./functions.sh
-softlink "${LAZYGIT_CONFIG[@]}"
-softlink "${BAT_CONFIG[@]}"
-softlink "${TMUX_CONFIG[@]}"
+linkconfig "${LAZYGIT_CONFIG[@]}" soft
+linkconfig "${BAT_CONFIG[@]}" soft
+linkconfig "${GLOW_CONFIG[@]}" soft
+linkconfig "${IPYTHON_CONFIG[@]}" soft
+linkconfig "${TMUX_CONFIG[@]}" soft
 tmux source-file "${TMUX_CONFIG[1]}"
-softlink "${GLOW_CONFIG[@]}"
 
-hardlink "${NVIM_CONFIG[@]}"
+
+linkconfig "${NVIM_CONFIG[@]}" hard
 set_open_nvim_theme
 
 gtktheme "${GTKTHEME}"
-
