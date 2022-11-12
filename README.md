@@ -19,8 +19,8 @@ Component:
 # Other scripts (if any)
   - Name: autodarkmode_wsl
     Command: powershell
-    ArgsLight: [-NoProfile, -Command, wsl source path/to/repo/adm.sh 1]
-    ArgsDark: [-NoProfile, -Command, wsl source path/to/repo/adm.sh 0]
+    ArgsLight: [-NoProfile, -Command, wsl path/to/repo/adm.sh 1]
+    ArgsDark: [-NoProfile, -Command, wsl path/to/repo/adm.sh 0]
     AllowedSources: [Any]
 ```
 
@@ -28,7 +28,7 @@ Component:
 ```shell
 if [ -z $TMUX ]
 then
-    source path/to/repo/adm.sh
+    path/to/repo/adm.sh
 fi
 ```
 
@@ -64,7 +64,7 @@ IPYTHON_CONFIG=(~/.ipython/profile_default/{ipython_config.py,light.py,dark.py})
 A symlink can be created using `softlink` function from `functions.sh`.
 Add the following line to the end of `adm.sh`:
 ```shell
-softlink "${IPYTHON[@]}"
+softlink "${IPYTHON_CONFIG[@]}"
 ```
 
 ## Available functions and variables
@@ -73,17 +73,13 @@ softlink "${IPYTHON[@]}"
 Creates symbolic link
 Based on `WINTHEME`, links to dark or light file.
 This function takes three arguments,
-- **argument 1** is the path where the config file (symbolic link) needs to be created.
-- **argument 2** path of the light themed configuration to link to.
-- **argument 3** path of the dark themed configuration to link to.
-
-#### hardlink
-Creates hard link
-Based on `WINTHEME`, links to dark or light file.
-This function takes three arguments,
-- **argument 1** is the path where the config file (hard link) needs to be created.
-- **argument 2** path of the light themed configuration to link to.
-- **argument 3** path of the dark themed configuration to link to.
+- **argument 1** is the path where the config file must be put.
+- **argument 2** path of the light themed configuration file.
+- **argument 3** path of the dark themed configuration file.
+- **argument 4** `soft` | `hard` | `copy`
+    - `soft` - Creates a soft (symbolic) link to the chosen theme as config file
+    - `hard` - Creates a hard link to the chosen theme as config file
+    - `copy` - Creates a copy of the chosen theme file and saves as config file
 
 #### set_open_nvim_theme
 Attempts to change the background of theme in running nvim instances.
@@ -103,8 +99,6 @@ Takes 1 argument:
 ### Variables
 #### WINTHEME
 *Possible values **0** or **1**.*
-
-
     0 - Dark
     1 - Light
 
@@ -115,7 +109,7 @@ with argument, `WINTHEME` is the value of the first argument. If provided argume
 is not *0* or *1*, query windows registry to set `WINTHEME`.
 
 #### MODE
-Possible values **"light"** or **"dark"**.
+Possible values **`light`** or **`dark`**.
 
 
 `MODE` can be used in cases where *light* or *dark* must be provided to change theme.
