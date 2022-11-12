@@ -35,7 +35,7 @@ MODE=$([ "$WINTHEME" -eq 0 ] && echo "dark" || echo "light")
 
 # If a regular (i.e. non symlink) config file does not exist
 # set theme by linking with appropriate theme file based on $WINTHEME
-# takes a three or four arguments:
+# takes four arguments:
 #   $1 -> config path of a program
 #   $2 -> corresponding light theme file
 #   $3 -> corresponding dark theme file
@@ -55,6 +55,10 @@ softlink() {
 hardlink() {
 	# if file exists, delete
 	test -f "$1" && rm "$1"
+#   $4 -> hard | soft | copy
+#                    If hard is supplied as 4th arg, creates hard link
+#                    If soft is supplied as 4th arg, creates hard link
+#                    If copy is supplied as 4th arg, copies the file
 	target=$([ "$WINTHEME" -eq 0 ] && echo "$3" || echo "$2")
 	# create hard link, as lua cannot load symlink as module
 	ln "$target" "$1"
