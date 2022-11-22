@@ -61,16 +61,16 @@ c.TerminalInteractiveShell.highlighting_style = 'gruvbox-light'
 IPYTHON_CONFIG=(~/.ipython/profile_default/{ipython_config.py,light.py,dark.py})
 ```
 - Now based on system theme, light.py or dark.py can be linked to `config.py`.
-A symlink can be created using `softlink` function from `functions.sh`.
+A symlink can be created using `linkconfig` function from `functions.sh`.
 Add the following line to the end of `adm.sh`:
 ```shell
-softlink "${IPYTHON_CONFIG[@]}"
+linkconfig "${IPYTHON_CONFIG[@]}" soft
 ```
 
 ## Available functions and variables
 ### Functions
-#### softlink
-Creates symbolic link
+#### linkconfig
+Creates symbolic link, or hardlink, or copy based on argument
 Based on `WINTHEME`, links to dark or light file.
 This function takes three arguments,
 - **argument 1** is the path where the config file must be put.
