@@ -8,7 +8,16 @@ Change wsl2 app themes based on Windows theme switch
 ## Requirements
 - wsl2
 - [AutoDarkMode](https://github.com/AutoDarkMode/Windows-Auto-Night-Mode)
-- zsh (*recommended*)
+- zsh (*recommended*)\*
+
+\* *May work with `bash`, to try, change the first line of `adm.sh` and `functions.sh` from:*
+```shell
+#!/usr/bin/zsh
+```
+to
+```shell
+#!/usr/bin/bash
+```
 
 ## Usage
 1. [Configure](https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/wiki/How-to-add-custom-scripts) the `scripts.yaml` of AutoDarkMode:
