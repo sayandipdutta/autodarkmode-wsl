@@ -41,6 +41,9 @@ Currently the script is configured for:
 - bat
 - glow
 
+** NOTE: You need to have your own configuration files for light and dark themes for each program.**
+** You can add or modify paths of the config files in `adm.sh`.**
+
 ### Adding more programs
 - To add more programs, add config files for that program to `adm.sh`.
 - Use existing functions if theme switch can be done using linking config file to its dark or light variant.
